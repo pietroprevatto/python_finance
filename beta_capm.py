@@ -64,10 +64,7 @@ for k in keys:
     print('Expected return based on CAPM model for {} is {}%'.format(k, round(ER[k],2)))
     
 for k in keys:
-    print('Return based on historical data {} is {}%'.format(k,round(log_returns[k].mean() * 252,2)))
-
-
-
+    print('Return based on historical data for {} is {}%'.format(k,round(log_returns[k].mean() * 252,2)))
 
 
 
