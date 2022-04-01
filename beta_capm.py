@@ -52,7 +52,7 @@ for idx, ticker in enumerate(log_returns.columns):
 plt.suptitle('Beta estimation: regression between IBOV and individual stock monthly performance', size=15)
 
 ER = dict()
-rf = 0
+rf = 10
 rm = log_returns['^BVSP'].mean() * 252
 
 keys = list(beta.keys())
