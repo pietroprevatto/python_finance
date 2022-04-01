@@ -51,24 +51,28 @@ for idx, ticker in enumerate(log_returns.columns):
         alpha[ticker] = a_
 plt.suptitle('Beta estimation: regression between IBOV and individual stock monthly performance', size=15)
 
-retorno_acumulado = (1 + log_returns).cumprod()
-retorno_acumulado.iloc[0] = 1 
+ER = dict()
+rf = 0
+rm = log_returns['^BVSP'].mean() * 252
 
-retorno_final = retorno_acumulado.iloc[-1]
-retorno_final = retorno_final.drop(['^BVSP'])
-retorno_final = pd.DataFrame(retorno_final)
+keys = list(beta.keys())
 
-beta_serie = pd.Series(beta)
-beta_serie = pd.DataFrame(beta_serie)
+for k in keys:
+    ER[k] = rf + beta[k] * (rm-rf)
 
-plot_final = retorno_final.join(beta_serie)
+for k in keys:
+    print('Expected return based on CAPM model for {} is {}%'.format(k, round(ER[k],2)))
+    
+for k in keys:
+    print('Return based on historical data {} is {}%'.format(k,round(log_returns[k].mean() * 252,2)))
 
 
-    
-    
-    
-    
-    
+
+
+
+
+
+
     
     
     
