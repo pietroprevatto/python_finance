@@ -50,5 +50,5 @@ for saldo in saldos_finais:
     supera_ibov += 1
 
 supera_ibov_porcento = round((supera_ibov / n)*100, 2)
-plt.title(f'{supera_ibov} de {n} carteiras ({supera_ibov_porcento}%) bateram o IBOV no período')
+plt.title(f'{supera_ibov} de {n} carteiras ({supera_ibov_porcento}%) bateram o IBOV no período', fontsize = 25)
 
