@@ -1,17 +1,19 @@
 import streamlit as st
 import pandas as pd
-import pandas_datareader as web
+import yfinance as yf
 import seaborn as sns
+import matplotlib.pyplot as plt
 
+plt.style.use('seaborn')
 cryptos = ('BTC-USD', 'ETH-USD', 'ADA-USD', 'SOL-USD', 'LUNA1-USD', 'AVAX-USD', 'FTM-USD', 'DOT-USD')
 
-
-
 st.markdown('''# **Crypto Dashboard**
-Simple cryptocurrency app using Binance API
+Simple cryptocurrency app using Binance API and YahooFinance
 ''')
 
-st.header('**Crypto Prices**')
+st.header(''' **Crypto Prices**
+Changes in the last 24h
+''')
 
 df = pd.read_json('https://api.binance.com/api/v3/ticker/24hr')
 
@@ -72,9 +74,34 @@ col4.metric(col8_selection, col8_price, col8_percent)
 st.header('**All Infos**')
 st.dataframe(df)
 
-st.header('**Comparison**')
+st.header('**Cumulative Returns**')
 dropdown = st.multiselect('Pick your crypto', cryptos)
+start = st.date_input('Start', value = pd.to_datetime('2020-01-01'))
+end = st.date_input('End', value = pd.to_datetime('today'))
+
+def relative_returns(data):
+    rel = data.pct_change()
+    cum_ret = (1 + rel).cumprod() - 1
+    cum_ret = cum_ret.fillna(0)
+    return cum_ret
+
+def change(data):
+    pct_change = data.pct_change()
+    return pct_change
+
+if len(dropdown) > 0:
+    data = relative_returns(yf.download(dropdown, start, end)['Adj Close'])
+    st.line_chart(data)
+
+correlation = change(yf.download(cryptos, start, end)['Adj Close'])
+correlation = correlation.corr(method = 'pearson')
+st.header('**Top Crypto Correlation**')
+sns.heatmap(correlation, cmap = 'rocket')
+st.pyplot(plt.gcf())
 
 st.info('Created by Pietro Prevatto')
+
+
+
 
 
