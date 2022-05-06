@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import yfinance as yf
+import pandas_datareader as web
 import seaborn as sns
 import datetime as dt
 
