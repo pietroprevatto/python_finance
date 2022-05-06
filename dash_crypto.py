@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import pandas_datareader as web
 import seaborn as sns
-import datetime as dt
 
 cryptos = ('BTC-USD', 'ETH-USD', 'ADA-USD', 'SOL-USD', 'LUNA1-USD', 'AVAX-USD', 'FTM-USD', 'DOT-USD')
 
