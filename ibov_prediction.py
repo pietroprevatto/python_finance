@@ -24,4 +24,3 @@ plt.title('Ibov Prediction - 150 days')
 plt.xlabel('Date')
 plt.ylabel('Points')
 plt.show()
-

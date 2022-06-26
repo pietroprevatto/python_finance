@@ -112,4 +112,3 @@ fig.update_layout(title = 'Frequency of Returns - Election Years', xaxis = dict(
                   xaxis7 = dict(title = 'Ibov 2022 Annualized Vol: ' + str(vol_2022 + '%')))
 
 fig.show()
-
