@@ -5,7 +5,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-dados = pd.read_csv('C:/Users/pietro.prevatto/Documents/^BVSP.csv')
+dados = pd.read_csv('C:/Users/pprev/Documents/^BVSP.csv')
 dados['Date'] = pd.to_datetime(dados['Date'])
 dados = dados.fillna(method = 'bfill')
 
